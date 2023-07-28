@@ -1,0 +1,85 @@
+$primary-color: #1d3557;
+$error-color: #e63946;
+$text-color: #293241;
+$border-radius: 4px;
+
+img {
+    object-fit: scale-down;
+    width: 250px ;
+    height:120px;
+}
+.container {
+    h1 {
+        font-size: 2rem;
+        color: $text-color;
+    }
+
+    form {
+        padding: 15px;
+    }
+
+    label,
+    input {
+        color: $text-color;
+    }
+
+    label {
+        font-size: 1.4rem;
+        margin-bottom: 0.5rem;
+    }
+
+    input,
+    .notlisted,
+    .notlisted-error {
+        border: 2px solid rgba($primary-color, 0.8);
+        border-radius: $border-radius;
+        padding: 0.5rem 1rem;
+        padding-left: 1rem;
+        font-size: 1rem;
+        width: 100%;
+    }
+
+    .form-row {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1.5rem;
+        width: 100%;
+
+    }
+
+    .form-row-pass {
+        display: grid;
+    }
+
+    .eye-password {
+        position: relative;
+        margin-left: auto;
+        margin-right: 5%;
+        margin-top: -7%;
+        cursor: pointer;
+    }
+
+    @media (max-width: 414px) {
+        .eye-password {
+            position: relative;
+            margin-left: auto;
+            margin-right: 1%;
+            margin-top: -15%;
+        }
+    }
+
+    .input-error,
+    .notlisted-error {
+        border-color: $error-color;
+    }
+
+    .error {
+        color: $error-color;
+        font-size: 1rem;
+        margin-top: 0.3rem;
+    }
+
+    a {
+        padding: 10px;
+    }
+}
