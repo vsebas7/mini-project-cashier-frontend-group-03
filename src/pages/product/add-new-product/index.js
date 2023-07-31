@@ -6,7 +6,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { AddProductValidationSchema } from "../../../store/slices/product/validation";
 import { addProduct } from "../../../store/slices/product/slices";
 import { getCategory } from "../../../store/slices/category/slices";
-import RenderCategoryProduct from "../../../components/category";
+import {RenderCategoryProduct} from "../../../components/category";
 import "../../../Form.scss"
 
 const initialValuesAddProduct = {
@@ -195,7 +195,7 @@ function AddNewProductPage () {
                                 </select>
                             </div>
                             
-                            <div className="flex flex-row justify-between w-full">
+                            <div className="flex flex-row justify-center w-full">
                                 <button 
                                     type="button" 
                                     class="text-sm font-medium px-5 py-2.5 mr-2 text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
@@ -203,13 +203,13 @@ function AddNewProductPage () {
                                     >
                                     Save Changes
                                 </button>
-                                <button 
+                                {/* <button 
                                     type="button" 
                                     class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center "
                                     onClick={() =>{setConfirmation(true)}}
                                 >
                                     Cancel
-                                </button>
+                                </button> */}
                             </div>
                             
                             <div 

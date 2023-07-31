@@ -45,7 +45,7 @@ function RegisterCashierPage () {
         >
         {({ errors, touched, isSubmitting }) => {
             return (
-            <div className="container ">
+            <div className="container flex flex-col items-center justify-center">
                 <div className="form card w-4/12 bg-base-100 shadow-xl py-4 ">
                     <Form>
                     <h1>Register a New Cashier</h1>

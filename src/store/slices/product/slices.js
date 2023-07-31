@@ -31,8 +31,6 @@ export const getProductDetail = createAsyncThunk(
         try {
             const {data} = await api.get("product/" + encodeURI(payload))
 
-            Toast.success(data.message)
-
             return data.product
         } catch (error) {
             Toast.error(error.response.data.message)

@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowUpAZ, faArrowDownZA, faArrowUp19, faArrowDown91  } from "@fortawesome/free-solid-svg-icons"
 import Pagination from "../../components/pagination"
 import RenderProductDetailCard from "../../components/products/edit-product"
-import RenderCategoryProduct from "../../components/category"
+import {RenderCategoryProduct} from "../../components/category"
 
 
 function ListProductPage () {
@@ -31,7 +31,7 @@ function ListProductPage () {
     const [nameFilter,setNameFilter] = useState("")
     const [category,setCategory] = useState("")
 
-    // const PARAMETER = `?page=${currentPage}&product_name=${nameFilter}&id_cat=${category}&sort_price=${sortingPrice}&sort_name=${sortingName}`
+    const PARAMETER = `?page=${currentPage}&product_name=${nameFilter}&id_cat=${category}&sort_price=${sortingPrice}&sort_name=${sortingName}`
 
     const onButtonSortName = (type="")=>{
         setSortingName(type)
@@ -72,7 +72,7 @@ function ListProductPage () {
                 sort_name : sortingName
             })
         )
-        // window.history.pushState({}, null, ("http://localhost:3000/product" + PARAMETER));
+        window.history.replaceState({}, null, ("http://localhost:3000/product" + `?page=${currentPage}&product_name=${event.target.value}&id_cat=${category}&sort_price=${sortingPrice}&sort_name=${sortingName}`));
     }
 
     const handleChangeCategory = (event) => {
@@ -166,12 +166,14 @@ function ListProductPage () {
             </div>
             
             <div className="flex w-full ">
-                <div className={`flex flex-row flex-wrap  ${detailProduct.length ? "opacity-20 w-full gap-9 " : ""}`}>
+                <div className={`flex flex-row flex-wrap  ${detailProduct.length ? " w-full gap-9 " : ""}`}>
+                    <div className={`w-full  ${!detailProduct.length ? "hidden" :"fixed bg-slate-400 bg-opacity-50 pt-[250px] flex flex-col items-center right-0 z-40 p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-full"}`}></div>
                     <RenderProductListCard productList={listProduct} />
                 </div>
-                <div className={`w-full  ${!detailProduct.length ? "hidden" : "flex flex-grow"}`}>
+                <div className={`w-full  ${!detailProduct.length ? "hidden" : "flex flex-grow z-50 mt-[-50px]"}`}>
                     <RenderProductDetailCard productDetail={detailProduct}/>
                 </div>
+                
             </div>
             <div className="flex flex-col justify-self-center w-full align-middle items-center">
                 <Pagination 

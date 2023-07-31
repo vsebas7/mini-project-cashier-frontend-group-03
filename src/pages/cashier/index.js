@@ -26,9 +26,10 @@ function ListCashierPage () {
             </a>
             <div className="flex w-full ">
                 <div className={`flex flex-row flex-wrap ${detailCashier.length ? "opacity-20" : ""}`}>
+                    <div className={`w-full  ${!detailCashier.length ? "hidden" :"fixed bg-slate-400 bg-opacity-50 pt-[250px] flex flex-col items-center right-0 z-40 p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-full"}`}></div>
                     <RenderCashierListCard cashierList={listCashier} />
                 </div>
-                <div className={`w-full  ${!detailCashier.length ? "hidden" : ""}`}>
+                <div className={`w-full  ${!detailCashier.length ? "hidden" : "z-50"}`}>
                     <RenderCashierDetailCard cashierDetail={detailCashier}/>
                 </div>
             </div>

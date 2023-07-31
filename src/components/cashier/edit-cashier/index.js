@@ -38,6 +38,7 @@ function CashierDetailCard ({
             email : emailRef.current?.value ? emailRef.current?.value : emailRef.current?.placeholder
         })
         setConfirmation(false)
+        dispatch(getCashier())
     }
 
     return (
@@ -47,7 +48,7 @@ function CashierDetailCard ({
         >
         {({ errors, touched, isSubmitting }) => {
             return (
-            <div className="container">
+            <div className="container ">
                 <div className=" form card w-[35%] bg-white rounded flex flex-col items-center shadow-xl">
                     <Form className="w-[80%] flex flex-col items-center">
                         <h1>Cashier Detail</h1>

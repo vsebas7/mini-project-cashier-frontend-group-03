@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from "react-redux"
 import { Navigate, useNavigate } from "react-router-dom"
 import { Formik, Form, Field, ErrorMessage, replace } from "formik";
 import {useDropzone} from 'react-dropzone';
-import RenderCategoryProduct from "../../../components/category"
+import {RenderCategoryProduct} from "../../../components/category"
 import { EditProductValidationSchema } from "../../../store/slices/product/validation";
-import { addProduct, editProductDetail, editProductImage, getProduct } from "../../../store/slices/product/slices";
+import { editProductDetail, editProductImage, getProduct, getProductDetail } from "../../../store/slices/product/slices";
+import { getCategory } from "../../../store/slices/category/slices";
 
 const initialValuesEditProduct = {
     name:"",

@@ -13,6 +13,7 @@ import Sidebar from "./components/menu/sidebar"
 import ListCashierPage from "./pages/cashier"
 import ListProductPage from "./pages/product"
 import AddNewProductPage from "./pages/product/add-new-product"
+import ListCategoryPage from "./pages/product/category"
 
 function App() {
 	document.title = 'Toko Hidup Makmur'
@@ -45,6 +46,7 @@ function App() {
 					<Route path="/cashier/register-cashier" element={<RegisterCashierPage />} />
 					<Route path="/product" element={<ListProductPage />} />
 					<Route path="/product/add-new-product" element={<AddNewProductPage />} />
+					<Route path="/category" element={<ListCategoryPage />} />
 				</Routes>
 			</div>
 			
