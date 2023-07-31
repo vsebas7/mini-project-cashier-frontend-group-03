@@ -30,6 +30,7 @@ function ListProductPage () {
     const [sortingPrice,setSortingPrice] = useState("")
     const [nameFilter,setNameFilter] = useState("")
     const [category,setCategory] = useState("")
+    const [show,setShow] = useState(false)
 
     const PARAMETER = `?page=${currentPage}&product_name=${nameFilter}&id_cat=${category}&sort_price=${sortingPrice}&sort_name=${sortingName}`
 
@@ -166,12 +167,12 @@ function ListProductPage () {
             </div>
             
             <div className="flex w-full ">
-                <div className={`flex flex-row flex-wrap  ${detailProduct.length ? " w-full gap-9 " : ""}`}>
-                    <div className={`w-full  ${!detailProduct.length ? "hidden" :"fixed bg-slate-400 bg-opacity-50 pt-[250px] flex flex-col items-center right-0 z-40 p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-full"}`}></div>
-                    <RenderProductListCard productList={listProduct} />
+                <div className={`flex flex-row flex-wrap  ${!show ? "" : "w-full gap-9"}`}>
+                    <div className={`w-full  ${!show ? "hidden" :"fixed bg-slate-400 bg-opacity-50 pt-[250px] flex flex-col items-center right-0 z-40 p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-full"}`}></div>
+                    <RenderProductListCard productList={listProduct} onEdit={()=>{setShow(true)}} />
                 </div>
-                <div className={`w-full  ${!detailProduct.length ? "hidden" : "flex flex-grow z-50 mt-[-50px]"}`}>
-                    <RenderProductDetailCard productDetail={detailProduct}/>
+                <div className={`w-full  ${!show ? "hidden" : "flex flex-grow z-50 mt-[-50px]"}`}>
+                    <RenderProductDetailCard productDetail={detailProduct} onButtonCancel={()=>{setShow(false)}}/>
                 </div>
                 
             </div>

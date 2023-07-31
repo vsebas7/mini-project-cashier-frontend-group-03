@@ -14,7 +14,8 @@ function CategoryDetailCard ({
     id = "",
     name = "",
     parent_name = "",
-    parent_id = ""
+    parent_id = "",
+    onButtonCancel = ()=>{}
 }) {
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -42,7 +43,6 @@ function CategoryDetailCard ({
                     category_id : id
                 })
             )
-            console.log(category ? category : parent_id ? parent_id : null)
         }else {
             dispatch(
                 addNewCategory({
@@ -56,16 +56,11 @@ function CategoryDetailCard ({
         setConfirmation(false)
         dispatch(getCategory())
         dispatch(getCategoryWithParentList())
+        onButtonCancel()
     }
 
     const handleChangeCategory = (event) => {
         setCategory(event.target.selectedOptions[0].className)
-    }
-
-    const onButtonCancel = () => {
-        dispatch(defaultCategory())
-        dispatch(getCategory())
-        dispatch(getCategoryWithParentList())
     }
     
     useEffect(() => {
@@ -168,6 +163,7 @@ z                                onClick={onButtonCancel}
 
 export default function RenderCategoryDetailCard ({
     categoryDetail = [],
+    onButtonCancel =()=>{}
 }) {
     return (
         <CategoryDetailCard
@@ -175,6 +171,7 @@ export default function RenderCategoryDetailCard ({
             name={categoryDetail.length > 0 ? categoryDetail[0].name : ""}
             parent_name={categoryDetail.length > 1 ? categoryDetail[1].name : ""}
             parent_id={categoryDetail.length > 1 ? categoryDetail[1].id : ""}
+            onButtonCancel={onButtonCancel}
         />
     )
 }

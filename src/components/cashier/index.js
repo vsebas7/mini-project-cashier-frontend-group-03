@@ -12,6 +12,7 @@ function CashierListCard ({
     email = "",
     image = "",
     status = "",
+    onEdit = ()=>{}
 }) {
     const dispatch = useDispatch()
 
@@ -21,15 +22,7 @@ function CashierListCard ({
 
     const [modification,dataModified] = useState(false)
 
-    const [editing,editCashier] = useState(false)
-
     const writeIcon = <FontAwesomeIcon icon={faPenToSquare} />
-
-    const { detailCashier } = useSelector(state => {
-        return {
-            detailCashier : state.cashier.detail,
-        }
-    })
 
     const onButtonDelete = ()=>{
         dispatch(
@@ -50,8 +43,8 @@ function CashierListCard ({
     const onButtonEdit = ()=>{
         dispatch(
             getCashierDetail(id),
-            editCashier(true)
         )
+        onEdit()
     }
 
     return (
@@ -144,6 +137,7 @@ function CashierListCard ({
 
 export default function RenderCashierListCard ({
     cashierList = [],
+    onEdit = ()=>{}
 }) {
     return cashierList.map((cashierList, index) => {
         return (
@@ -153,6 +147,7 @@ export default function RenderCashierListCard ({
                 image={cashierList.image}
                 email = {cashierList.email}
                 status = {cashierList.status}
+                onEdit = {onEdit}
             />
         )
     })

@@ -25,9 +25,7 @@ export const getCategoryWithParentList = createAsyncThunk(
         try {
             const { data } = await api.get("category/all-with-parent-list")
             
-            if(window.location.pathname !== "/category") {
-                Toast.success(data.message)
-            }
+            Toast.success(data.message)
 
             return data.category
         } catch (error) {
@@ -71,9 +69,7 @@ export const getDetailCategory = createAsyncThunk(
 
             return data.category
         } catch (error){
-            if(window.location.pathname !== "/category") {
-                Toast.error(error.response.data.message)
-            }
+            Toast.error(error.response.data.message)
 
             return rejectWithValue(error.response.data.message)
         }

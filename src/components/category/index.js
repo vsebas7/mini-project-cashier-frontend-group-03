@@ -29,7 +29,8 @@ export function RenderCategoryProduct ({
 function CategoryList ({
     id = "",
     name = "",
-    parent = ""
+    parent = "",
+    onEdit = ()=>{}
 }) {
     const dispatch = useDispatch()
 
@@ -46,6 +47,7 @@ function CategoryList ({
         dispatch(
             getDetailCategory(id),
         )
+        onEdit()
     }
 
     return (
@@ -119,6 +121,7 @@ function CategoryList ({
 
 export function RenderCategoryList ({
     categories = [],
+    onEdit = () =>{}
 }) {
     return categories.map((category, index) => {
         return (
@@ -126,6 +129,7 @@ export function RenderCategoryList ({
                 id={category.id}
                 name={category.name}
                 parent={category.parent}
+                onEdit={onEdit}
             />
         )
     })

@@ -1,16 +1,17 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons"
-import RenderCashierDetailCard from "./edit-product";
-import { deleteProduct, getProduct, getProductDetail } from "../../store/slices/product/slices";
+import { deleteProduct, getProductDetail } from "../../store/slices/product/slices";
+
 function ProductListCard ({
     id = "",
     name = "",
     price = "",
     image = "",
     desc = "",
+    onEdit = ()=>{}
 }) {
     const dispatch = useDispatch()
 
@@ -20,15 +21,7 @@ function ProductListCard ({
 
     const [modification,dataModified] = useState(false)
 
-    const [editing,editProduct] = useState(false)
-
     const writeIcon = <FontAwesomeIcon icon={faPenToSquare} />
-
-    const { detailProduct } = useSelector(state => {
-        return {
-            detailProduct : state.product.detail,
-        }
-    })
 
     const onButtonDelete = ()=>{
         dispatch(
@@ -37,24 +30,11 @@ function ProductListCard ({
         dataModified(!modification)
     }
 
-    // useEffect(() => {
-	// 	dispatch(
-    //         getProduct({
-    //             page:1, 
-    //             product_name:"", 
-    //             id_cat:"", 
-    //             sort_price:"", 
-    //             sort_name:""
-    //         })
-    //     )
-    //     dataModified(false)
-	// }, [modification,dataModified])
-
     const onButtonEdit = ()=>{
         dispatch(
             getProductDetail(id),
-            editProduct(true)
         )
+        onEdit()
     }
 
     return (
@@ -149,6 +129,7 @@ function ProductListCard ({
 
 export default function RenderProductListCard ({
     productList = [],
+    onEdit = ()=>{}
 }) {
     return productList.map((productList, index) => {
         return (
@@ -158,6 +139,7 @@ export default function RenderProductListCard ({
                 name={productList.name}
                 price = {productList.price}
                 desc = {productList.description}
+                onEdit={onEdit}
             />
         )
     })

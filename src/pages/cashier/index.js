@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import RenderCashierListCard from "../../components/cashier/"
@@ -14,6 +14,8 @@ function ListCashierPage () {
             detailCashier : state.cashier.detail,
         }
     })
+
+    const [show,setShow] = useState(false)
     
     useEffect(() => {
 		dispatch(getCashier())
@@ -25,12 +27,12 @@ function ListCashierPage () {
                 Cashier List
             </a>
             <div className="flex w-full ">
-                <div className={`flex flex-row flex-wrap ${detailCashier.length ? "opacity-20" : ""}`}>
-                    <div className={`w-full  ${!detailCashier.length ? "hidden" :"fixed bg-slate-400 bg-opacity-50 pt-[250px] flex flex-col items-center right-0 z-40 p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-full"}`}></div>
-                    <RenderCashierListCard cashierList={listCashier} />
+                <div className={`flex flex-row flex-wrap`}>
+                    <div className={`w-full  ${!show ? "hidden" :"fixed bg-slate-400 bg-opacity-50 pt-[250px] flex flex-col items-center right-0 z-40 p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-full"}`}></div>
+                    <RenderCashierListCard cashierList={listCashier} onEdit={()=>{setShow(true)}} />
                 </div>
-                <div className={`w-full  ${!detailCashier.length ? "hidden" : "z-50"}`}>
-                    <RenderCashierDetailCard cashierDetail={detailCashier}/>
+                <div className={`w-full  ${!show ? "hidden" : "z-50"}`}>
+                    <RenderCashierDetailCard cashierDetail={detailCashier} onButtonCancel={()=>{setShow(false)}}/>
                 </div>
             </div>
         </div>

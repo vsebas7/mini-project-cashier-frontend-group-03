@@ -23,7 +23,8 @@ function ProductDetailCard ({
     desc = "",
     image = "",
     cat ="",
-    cat_id =""
+    cat_id ="",
+    onButtonCancel = ()=>{}
 }) {
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -97,6 +98,7 @@ function ProductDetailCard ({
         )
         dispatch(editProductImage({product_id : id,data :formData})) 
         setConfirmation(false)
+        onButtonCancel()
     }
 
     useEffect(() => {
@@ -116,7 +118,6 @@ function ProductDetailCard ({
                     <div className=" form card w-[80%] bg-white rounded flex flex-col items-center shadow-xl">
                         <Form className="w-[80%] flex flex-col items-center">
                             <h1>Product Detail</h1>
-                            
                             <img class="w-36 h-36 my-3 rounded-full shadow-lg " src={"https://res.cloudinary.com/dpgk4f2eu/image/upload/f_auto,q_auto/v1/" + image} alt=""/>
                             
                             <div>
@@ -263,17 +264,7 @@ function ProductDetailCard ({
                                 <button 
                                     type="button" 
                                     class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center "
-                                    onClick={() =>{
-                                        dispatch(
-                                            getProduct({
-                                                page:1, 
-                                                product_name:"", 
-                                                id_cat:"", 
-                                                sort_price:"", 
-                                                sort_name:""
-                                            })
-                                        )
-                                    }}
+                                    onClick={onButtonCancel}
                                 >
                                     Cancel
                                 </button>
@@ -321,6 +312,7 @@ function ProductDetailCard ({
 
 export default function RenderProductDetailCard ({
     productDetail = [],
+    onButtonCancel =()=>{}
 }) {
     return productDetail.map((productDetail, index) => {
         return (
@@ -332,6 +324,7 @@ export default function RenderProductDetailCard ({
                 image = {productDetail.image}
                 cat = {productDetail.productCategory[0].category.name}
                 cat_id = {productDetail.productCategory[0].categoryId}
+                onButtonCancel={onButtonCancel}
             />
         )
     })
