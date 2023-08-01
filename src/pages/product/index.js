@@ -45,7 +45,7 @@ function ListProductPage () {
                 sort_name : type
             })
         )
-        // window.history.pushState({}, null, ("http://localhost:3000/product" + PARAMETER));
+        window.history.replaceState({}, null, ("http://localhost:3000/product" + `?page=${currentPage}&product_name=${nameFilter}&id_cat=${category}&sort_price=${sortingPrice}&sort_name=${type}`));
     }
 
     const onButtonSortPrice = (type="")=>{
@@ -59,7 +59,7 @@ function ListProductPage () {
                 sort_name : sortingName
             })
         )
-        // window.history.pushState({}, null, ("http://localhost:3000/product" + PARAMETER));
+        window.history.replaceState({}, null, ("http://localhost:3000/product" + `?page=${currentPage}&product_name=${nameFilter}&id_cat=${category}&sort_price=${type}&sort_name=${sortingName}`));
     }
 
     const handleChange = (event) => {
@@ -74,6 +74,7 @@ function ListProductPage () {
             })
         )
         window.history.replaceState({}, null, ("http://localhost:3000/product" + `?page=${currentPage}&product_name=${event.target.value}&id_cat=${category}&sort_price=${sortingPrice}&sort_name=${sortingName}`));
+            
     }
 
     const handleChangeCategory = (event) => {
@@ -87,7 +88,8 @@ function ListProductPage () {
                 sort_name : sortingName
             })
         )
-        // window.history.pushState({}, null, ("http://localhost:3000/product" + PARAMETER));
+        window.history.replaceState({}, null, ("http://localhost:3000/product" + `?page=${currentPage}&product_name=${nameFilter}&id_cat=${event.target.selectedOptions[0].className}&sort_price=${sortingPrice}&sort_name=${sortingName}`));
+
     }
 
     const onChangePagination = (type) => {
@@ -100,19 +102,32 @@ function ListProductPage () {
                 sort_name : sortingName
             })
         )
-        // window.history.replaceState({}, null, ("http://localhost:3000/product" + PARAMETER));
+        window.history.replaceState({}, null, ("http://localhost:3000/product" + `?page=${type === "prev" ? Number(currentPage) - 1 : Number(currentPage) + 1}&product_name=${nameFilter}&id_cat=${category}&sort_price=${sortingPrice}&sort_name=${sortingName}`));
     }
 
     useEffect(() => {
-        dispatch(
-            getProduct({
-                page:1, 
-                product_name:nameFilter, 
-                id_cat:"", 
-                sort_price:sortingPrice, 
-                sort_name:sortingName
-            })
-        )
+        if(!window.location.search){
+            dispatch(
+                getProduct({
+                    page:1, 
+                    product_name:nameFilter, 
+                    id_cat:"", 
+                    sort_price:sortingPrice, 
+                    sort_name:sortingName
+                })
+            )
+        }else {
+            window.history.pushState({},null,window.location.href)
+            dispatch(
+                getProduct({
+                    page:new URLSearchParams(window.location.search).get('page'), 
+                    product_name:new URLSearchParams(window.location.search).get('product_name'), 
+                    id_cat:new URLSearchParams(window.location.search).get('id_cat'), 
+                    sort_price:new URLSearchParams(window.location.search).get('sort_price'), 
+                    sort_name:new URLSearchParams(window.location.search).get('sort_name')
+                })
+            )
+        }
         dispatch(getCategory())
 	}, [editLoading])
 
@@ -132,7 +147,8 @@ function ListProductPage () {
                         type="search" 
                         id="default-search" 
                         class="block w-auto p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-                        placeholder="Search Product Name" 
+                        placeholder="Search Product Name"
+                        defaultValue={new URLSearchParams(window.location.search).get('product_name') ? new URLSearchParams(window.location.search).get('product_name') :"Search Product Name"}
                         required
                         onChange={handleChange}
                     />
@@ -160,7 +176,7 @@ function ListProductPage () {
                         onChange={handleChangeCategory}
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     >
-                    <option selected>Choose a category</option>
+                    <option selected>{new URLSearchParams(window.location.search).get('id_cat') ? "testing" :"Choose a category"}</option>
                     <RenderCategoryProduct categories={categoryProduct}/>
                     </select>
                 </div>

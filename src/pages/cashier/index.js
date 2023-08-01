@@ -27,11 +27,11 @@ function ListCashierPage () {
                 Cashier List
             </a>
             <div className="flex w-full ">
-                <div className={`flex flex-row flex-wrap`}>
+                <div className={`flex flex-row flex-wrap ${!show ? "" : "w-full gap-9"}`}>
                     <div className={`w-full  ${!show ? "hidden" :"fixed bg-slate-400 bg-opacity-50 pt-[250px] flex flex-col items-center right-0 z-40 p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-full"}`}></div>
                     <RenderCashierListCard cashierList={listCashier} onEdit={()=>{setShow(true)}} />
                 </div>
-                <div className={`w-full  ${!show ? "hidden" : "z-50"}`}>
+                <div className={`w-full  ${!show ? "hidden" : "flex flex-grow z-50 mt-[-50px]"}`}>
                     <RenderCashierDetailCard cashierDetail={detailCashier} onButtonCancel={()=>{setShow(false)}}/>
                 </div>
             </div>

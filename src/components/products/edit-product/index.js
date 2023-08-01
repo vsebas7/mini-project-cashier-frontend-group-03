@@ -6,7 +6,6 @@ import {useDropzone} from 'react-dropzone';
 import {RenderCategoryProduct} from "../../../components/category"
 import { EditProductValidationSchema } from "../../../store/slices/product/validation";
 import { editProductDetail, editProductImage, getProduct, getProductDetail } from "../../../store/slices/product/slices";
-import { getCategory } from "../../../store/slices/category/slices";
 
 const initialValuesEditProduct = {
     name:"",
@@ -253,7 +252,7 @@ function ProductDetailCard ({
                                 </select>
                             </div>
                             
-                            <div className="flex flex-row justify-between w-full">
+                            <div className="flex flex-row justify-between w-full py-5">
                                 <button 
                                     type="button" 
                                     class="text-sm font-medium px-5 py-2.5 mr-2 text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"

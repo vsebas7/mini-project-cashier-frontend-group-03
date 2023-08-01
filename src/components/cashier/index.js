@@ -48,9 +48,9 @@ function CashierListCard ({
     }
 
     return (
-        <div className="flex flex-wrap gap-4 h-[100%] ">
+        <div className="flex flex-wrap gap-9">
             <div class={`
-                 gap-4 p-5 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mr-5 
+                flex flex-col gap-4 w-[250px] h-auto p-5 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mr-5
                 ${status === 0  ? "opacity-50" : ""}
             `}>
                 <a href="#" >

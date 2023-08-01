@@ -4,7 +4,8 @@ import {
     getCashier,
     getCashierDetail,
     registerCashier,
-    deactiveCashier
+    deactiveCashier,
+    editCashier
 } from "./slices"
 
 const INITIAL_STATE = {
@@ -13,7 +14,8 @@ const INITIAL_STATE = {
     isGetCashierLoading : false,
     isGetCashierDetailLoading : false,
     isRegisterCashierLoading : false,
-    isDeactiveCashierLoading : false
+    isDeactiveCashierLoading : false,
+    isEditCashierLoading : false
 }
 
 const cashierSlice = createSlice({
@@ -65,6 +67,15 @@ const cashierSlice = createSlice({
         },
         [deactiveCashier.rejected] : (state, action) => {
             state.isDeactiveCashierLoading = false
+        }, 
+        [editCashier.pending] : (state, action) => {
+            state.isEditCashierLoading = true
+        },
+        [editCashier.fulfilled] : (state, action)=> {
+            state.isEditCashierLoading = false
+        },
+        [editCashier.rejected] : (state, action) => {
+            state.isEditCashierLoading = false
         }
     }
 })

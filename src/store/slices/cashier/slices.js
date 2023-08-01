@@ -55,11 +55,27 @@ export const registerCashier = createAsyncThunk (
 )
 
 export const deactiveCashier = createAsyncThunk (
-    "",
+    "auth/admin/cashier/deactive",
     
     async (payload, {rejectWithValue}) => {
         try {
             const {data} = await api.patch("auth/admin/cashier",payload)
+
+            Toast.success(data.message)
+
+        } catch (error) {
+            Toast.error(error.response?.data?.message)
+            return rejectWithValue(error.response?.data?.message)
+        }
+    }
+)
+
+export const editCashier = createAsyncThunk (
+    "auth/admin/cashier/edit",
+    
+    async (payload, {rejectWithValue}) => {
+        try {
+            const {data} = await api.patch("auth/admin/cashier/" + encodeURI(payload.idCashier),payload.data)
 
             Toast.success(data.message)
 
