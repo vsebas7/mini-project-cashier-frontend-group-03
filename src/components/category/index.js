@@ -7,8 +7,9 @@ function CategoryProduct ({
     id = "",
     name = "",
 }) {
+    const id_cat = new URLSearchParams(window.location.search).get('id_cat')
     return (
-        <option className={id.toString()} value={name}>{name}</option>
+        <option selected={id_cat == id} className={id.toString()} value={name}>{name}</option>
     )
 }
 

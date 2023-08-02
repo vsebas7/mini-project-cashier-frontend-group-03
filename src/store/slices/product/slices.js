@@ -12,7 +12,13 @@ export const getProduct = createAsyncThunk(
             const PARAMETER = `?page=${page}&product_name=${product_name}&id_cat=${id_cat}&sort_price=${sort_price}&sort_name=${sort_name}`
 
             const { data } = await api.get("product" + encodeURI(PARAMETER))
-            
+
+            if(page > 1 || product_name || id_cat || sort_price || sort_name){
+                window.history.replaceState({}, null, ("http://localhost:3000/product" + `?page=${page}&product_name=${product_name}&id_cat=${id_cat}&sort_price=${sort_price}&sort_name=${sort_name}`));
+            }else{
+                window.history.replaceState({}, null, ("http://localhost:3000/product"))
+            }
+
             Toast.success(data.message)
 
             return data.product

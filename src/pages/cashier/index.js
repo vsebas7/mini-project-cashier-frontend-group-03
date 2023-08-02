@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
 import RenderCashierListCard from "../../components/cashier/"
 import { getCashier } from "../../store/slices/cashier/slices"
 import RenderCashierDetailCard from "../../components/cashier/edit-cashier"
+
 function ListCashierPage () {
     const dispatch = useDispatch()
-    const navigate = useNavigate()
 
     const { listCashier, detailCashier } = useSelector(state => {
         return {

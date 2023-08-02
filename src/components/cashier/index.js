@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux"
 import { deactiveCashier, getCashier, getCashierDetail } from "../../store/slices/cashier/slices"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons"
-import RenderCashierDetailCard from "./edit-cashier";
 
 function CashierListCard ({
     id = "",
@@ -16,7 +14,6 @@ function CashierListCard ({
 }) {
     const dispatch = useDispatch()
 
-    const navigate = useNavigate()
 
     const [confirmation,deleteConfirm] = useState(false)
 

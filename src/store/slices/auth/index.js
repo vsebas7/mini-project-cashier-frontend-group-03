@@ -11,6 +11,7 @@ import {
 const INITIAL_STATE = {
     id : "",
     email : "",
+    role: "",
     isLogin : false,
     isLoginLoading : false,
     isLogoutLoading : false,
@@ -60,6 +61,7 @@ const authSlice = createSlice({
             state = Object.assign(state, {
                 id : action.payload?.users?.id,
                 email : action.payload?.users?.email,
+                role : action.payload?.users?.roleId,
                 isKeepLoginLoading : false
             })
         },

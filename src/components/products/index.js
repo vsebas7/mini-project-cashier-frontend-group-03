@@ -1,6 +1,5 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons"
 import { deleteProduct, getProductDetail } from "../../store/slices/product/slices";
@@ -15,13 +14,17 @@ function ProductListCard ({
 }) {
     const dispatch = useDispatch()
 
-    const navigate = useNavigate()
-
     const [confirmation,deleteConfirm] = useState(false)
 
     const [modification,dataModified] = useState(false)
 
     const writeIcon = <FontAwesomeIcon icon={faPenToSquare} />
+
+    const { role } = useSelector(state => {
+        return {
+            role : state.auth.role,
+        }
+    })
 
     const onButtonDelete = ()=>{
         dispatch(
@@ -63,7 +66,7 @@ function ProductListCard ({
                 </p>
                 <div className={`
                     flex flex-row flex-wrap gap-4 justify-between justify-self-end
-                    
+                    ${role > 1 ? "hidden" : ""}
                     `}>
                     <a 
                         onClick={onButtonEdit}
@@ -72,7 +75,7 @@ function ProductListCard ({
                         Edit 
                     </a>
                     <button 
-                        class="block text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" 
+                        class={`${role > 1 ? "hidden" : ""}block text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800`} 
                         type="button"
                         onClick={()=>deleteConfirm(true)}
                         >

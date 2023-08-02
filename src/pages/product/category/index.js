@@ -1,19 +1,16 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
-import { addNewCategory, getCategoryWithParentList, getCategory, defaultCategory, getDetailCategory } from "../../../store/slices/category/slices"
+import { getCategoryWithParentList, getCategory } from "../../../store/slices/category/slices"
 import { RenderCategoryList } from "../../../components/category"
 import RenderCategoryDetailCard from "../../../components/category/edit-category"
 
 function ListCategoryPage () {
     const dispatch = useDispatch()
-    const navigate = useNavigate()
 
-    const { categoryList, categoryDetail, editing} = useSelector(state => {
+    const { categoryList, categoryDetail } = useSelector(state => {
         return {
             categoryList : state.category.subcategory,
-            categoryDetail : state.category.detail,
-            editing : state.category.isGetDetailCategoryLoading,
+            categoryDetail : state.category.detail
         }
     })
 

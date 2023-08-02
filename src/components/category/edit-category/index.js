@@ -1,9 +1,9 @@
 import { useRef, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Navigate, useNavigate } from "react-router-dom"
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { addNewCategory, changeDetailCategory, defaultCategory, getCategory, getCategoryWithParentList, getDetailCategory } from "../../../store/slices/category/slices";
+import { addNewCategory, changeDetailCategory, defaultCategory, getCategory, getCategoryWithParentList } from "../../../store/slices/category/slices";
 import { RenderCategoryProduct } from "..";
+import { CategoryValidationSchema } from "../../../store/slices/category/validation";
 
 const initialValuesEditCategory = {
     name:"",
@@ -18,7 +18,6 @@ function CategoryDetailCard ({
     onButtonCancel = ()=>{}
 }) {
     const dispatch = useDispatch()
-    const navigate = useNavigate()
 
     const nameRef = useRef()
     
@@ -70,9 +69,9 @@ function CategoryDetailCard ({
     return (
         <Formik
             initialValues={initialValuesEditCategory}
-            // validationSchema={DetailValidationSchema}
+            validationSchema={CategoryValidationSchema}
         >
-        {({ errors, touched, isSubmitting }) => {
+        {({ errors, touched }) => {
             return (
             <div className="w-full container flex items-center justify-center ">
                 <div className=" form card w-[35%] bg-white rounded flex flex-col items-center shadow-xl">
@@ -117,7 +116,7 @@ function CategoryDetailCard ({
                             <button 
                                 type="button" 
                                 class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center "
-z                                onClick={onButtonCancel}
+                                onClick={onButtonCancel}
                             >
                                 Cancel
                             </button>

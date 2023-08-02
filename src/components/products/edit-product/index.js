@@ -1,11 +1,10 @@
 import { useRef, useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Navigate, useNavigate } from "react-router-dom"
-import { Formik, Form, Field, ErrorMessage, replace } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import {useDropzone} from 'react-dropzone';
 import {RenderCategoryProduct} from "../../../components/category"
 import { EditProductValidationSchema } from "../../../store/slices/product/validation";
-import { editProductDetail, editProductImage, getProduct, getProductDetail } from "../../../store/slices/product/slices";
+import { editProductDetail, editProductImage, getProduct } from "../../../store/slices/product/slices";
 
 const initialValuesEditProduct = {
     name:"",
@@ -26,7 +25,6 @@ function ProductDetailCard ({
     onButtonCancel = ()=>{}
 }) {
     const dispatch = useDispatch()
-    const navigate = useNavigate()
 
     const nameRef = useRef()
     const priceRef = useRef()
@@ -47,7 +45,6 @@ function ProductDetailCard ({
 
     const onButtonSave = () =>{
         formData.append('file',file)
-        console.log("after drop picture and save",formData.get('file'))
     }
 
     const onButtonCancelUpload = () =>{
@@ -75,13 +72,7 @@ function ProductDetailCard ({
     }
 
     const onButtonSure = () => {
-        console.log("wanna save changes",formData.get('file'))
-
-        console.log("in confirmation modal",file)
-
         formData.append('file',file)
-        
-        console.log("reappend formData",formData.get('file'))
         dispatch(
             editProductDetail(
                 { 
@@ -111,7 +102,7 @@ function ProductDetailCard ({
             initialValues={initialValuesEditProduct}
             validationSchema={EditProductValidationSchema}
         >
-        {({ errors, touched, isSubmitting }) => {
+        {({ errors, touched }) => {
             return (
                 <div className="container">
                     <div className=" form card w-[80%] bg-white rounded flex flex-col items-center shadow-xl">

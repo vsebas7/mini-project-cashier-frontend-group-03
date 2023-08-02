@@ -2,12 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import {
     getReport,
-    getReportDetail
+    getReportDetail,
+    getAllReport
 } from "./slices"
 
 const INITIAL_STATE = {
     list : [],
     detail : [],
+    all : [],
     isGetReportLoading : false,
     isGetReportDetailLoading : false,
 }
@@ -29,6 +31,18 @@ const reportSlice = createSlice({
             })
         },
         [getReport.rejected] : (state, action) => {
+            state.isGetReportLoading = false
+        },
+        [getAllReport.pending] : (state, action) => {
+            state.isGetReportLoading = true
+        },
+        [getAllReport.fulfilled] : (state, action) => {
+            state = Object.assign(state, {
+                all : action.payload,
+                isGetReportLoading : false
+            })
+        },
+        [getAllReport.rejected] : (state, action) => {
             state.isGetReportLoading = false
         },
         [getReportDetail.pending] : (state, action) => {

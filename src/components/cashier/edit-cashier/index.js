@@ -1,7 +1,5 @@
 import { useRef, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { Navigate, useNavigate } from "react-router-dom"
-
+import { useDispatch } from "react-redux"
 import { DetailValidationSchema } from "../../../store/slices/cashier/validation"
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { editCashier, getCashier } from "../../../store/slices/cashier/slices";
@@ -19,12 +17,10 @@ function CashierDetailCard ({
     onButtonCancel = ()=>{}
 }) {
     const dispatch = useDispatch()
-    const navigate = useNavigate()
 
     const usernameRef = useRef()
     const emailRef = useRef()
     
-    const [changes, saveChanges] = useState(false)
     const [confirmation, setConfirmation] = useState(false)
 
     const onButtonSave = () =>{
@@ -47,7 +43,7 @@ function CashierDetailCard ({
             initialValues={initialValuesEditCashier}
             validationSchema={DetailValidationSchema}
         >
-        {({ errors, touched, isSubmitting }) => {
+        {({ errors, touched }) => {
             return (
             <div className="container ">
                 <div className=" form card w-[60%] h-[100%] bg-white rounded flex flex-col items-center shadow-xl">
@@ -117,7 +113,7 @@ function CashierDetailCard ({
                                     Are you sure you want to save this changes?
                                 </h3>
                                 <button 
-                                    type="button" 
+                                    type="button"
                                     class="text-sm font-medium px-5 py-2.5 mr-2 text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                                     onClick={onButtonSave}
                                     >

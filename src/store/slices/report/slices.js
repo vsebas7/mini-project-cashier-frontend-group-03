@@ -13,11 +13,37 @@ export const getReport = createAsyncThunk(
             
             const filter_date = `&startFrom=${startFrom}&endFrom=${endFrom}`
 
-            console.log(filter_date)
-            
             const PARAMETER = pagination + `${startFrom ? filter_date : ""}`
 
             const { data } = await api.get("report" + encodeURI(PARAMETER))
+
+            if(page > 1 || startFrom || endFrom){
+                window.history.replaceState({}, null, ("http://localhost:3000/report" + PARAMETER));
+            }else{
+                window.history.replaceState({}, null, ("http://localhost:3000/report"))
+            }
+
+            Toast.success(data.message)
+
+            return data.report
+        } catch (error) {
+            Toast.error(error.response.data.message)
+
+            return rejectWithValue(error.response.data.message)
+        }
+    }
+)
+
+export const getAllReport = createAsyncThunk(
+    "report/all",
+
+    async (payload, {rejectWithValue}) => {
+        try {
+            const { startFrom, endFrom } = payload
+
+            const PARAMETER = `?startFrom=${startFrom}&endFrom=${endFrom}`
+
+            const { data } = await api.get("report/all" + encodeURI(PARAMETER))
 
             Toast.success(data.message)
 

@@ -1,7 +1,7 @@
-import { useRef, useState } from "react"
+import { useRef } from "react"
 import { useDispatch, useSelector} from "react-redux"
-import { Navigate, useNavigate } from "react-router-dom"
-import { deactiveCashier, registerCashier } from "../../../store/slices/cashier/slices"
+import { useNavigate } from "react-router-dom"
+import { registerCashier } from "../../../store/slices/cashier/slices"
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { RegisterValidationSchema } from "../../../store/slices/cashier/validation.js"
 import "../../../Form.scss"
@@ -29,12 +29,6 @@ function RegisterCashierPage () {
             username : usernameRef.current?.value.toString(),
             email : emailRef.current?.value.toString(),
             password : usernameRef.current?.value.toString().charAt(0).toUpperCase() + usernameRef.current?.value.toString().slice(1) + '_123'
-        }))
-    }
-
-    const onButtonDeactive = () => {
-        dispatch(deactiveCashier({
-            idCashier : 2
         }))
     }
 

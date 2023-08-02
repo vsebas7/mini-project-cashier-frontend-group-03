@@ -1,6 +1,5 @@
-import { useRef, useState, useEffect } from "react"
+import { useRef, useState } from "react"
 import { useDispatch } from "react-redux"
-import { Navigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -38,7 +37,7 @@ function ResetPasswordPage () {
             return (
             <div>
                 <div className="w-full fixed bg-slate-400 bg-opacity-100 pt-[250px] flex flex-col items-center right-0 z-40 p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-full"></div>
-                <div className="container flex flex-col items-center justify-center z-50">
+                <div className="ml-[-150px] container flex flex-col items-center justify-center z-50">
                 <div className="form card w-4/12 bg-white rounded shadow-xl py-4 z-50">
                         <Form>
                         <h1>Reset Password</h1>

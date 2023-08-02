@@ -38,11 +38,6 @@ function AddNewProductPage () {
 
     const formData = new FormData()
 
-    const onButtonSave = () =>{
-        formData.append('file',file)
-        console.log("after drop picture and save",formData.get('file'))
-    }
-
     const onButtonCancelUpload = () =>{
         setFile("null")
     }
@@ -55,7 +50,7 @@ function AddNewProductPage () {
         setFile(FileRejection[0].errors[0])
     }
 
-    const {getRootProps , getInputProps , open, isDragActive} = useDropzone({onDrop , 
+    const { getInputProps, open } = useDropzone({onDrop , 
         maxFiles:1 , 
         accept : {'image/*' : ['.jpg','.jpeg','.webp','.png']} ,
         maxSize :1000000,
@@ -136,7 +131,6 @@ function AddNewProductPage () {
                                     {
                                         file.name == "null" && touched.picture
                                         ? `${console.log(file.name == "null" && touched.picture)}`
-                                        // <span className="error">Picture is required</span>
                                         : ""
                                     }
                             </div>
@@ -203,13 +197,6 @@ function AddNewProductPage () {
                                     >
                                     Save Changes
                                 </button>
-                                {/* <button 
-                                    type="button" 
-                                    class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center "
-                                    onClick={() =>{setConfirmation(true)}}
-                                >
-                                    Cancel
-                                </button> */}
                             </div>
                             
                             <div 
@@ -224,7 +211,7 @@ function AddNewProductPage () {
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
                                 </svg>
                                 <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-                                    Are you sure you want to save this changes ?
+                                    Are you sure you want to add this product ?
                                 </h3>
                                 <button 
                                     type="button" 

@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom";
 import moment from "moment/moment";
 import { getReportDetail } from "../../store/slices/report/slices";
 import RenderReportDetailCard from "./detail-report";
@@ -15,8 +14,6 @@ function ReportListCard ({
     onHide =()=>{},
 }) {
     const dispatch = useDispatch()
-
-    const navigate = useNavigate()  
 
     const { reportDetail } = useSelector(state => {
         return {

@@ -10,13 +10,13 @@ function ReportDetailCard ({
             <th scope="row" class="px-6 py-4  font-medium text-gray-900  dark:text-white">
                 {name}
             </th>
-            <th scope="row" class="px-6 py-4  font-medium text-gray-900  dark:text-white">
+            <th scope="row" class="px-6 py-4 text-center font-medium text-gray-900  dark:text-white">
                 {qty}
             </th>
-            <th scope="row" class="px-6 py-4  font-medium text-gray-900  dark:text-white">
+            <th scope="row" class="px-6 py-4 text-right font-medium text-gray-900  dark:text-white">
                 {price}
             </th>
-            <th scope="row" class="px-6 py-4  font-medium text-gray-900  dark:text-white">
+            <th scope="row" class="px-6 py-4 text-right font-medium text-gray-900  dark:text-white">
                 {total_price}
             </th>
         </tr>
