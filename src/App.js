@@ -15,6 +15,7 @@ import ListProductPage from "./pages/product"
 import AddNewProductPage from "./pages/product/add-new-product"
 import ListCategoryPage from "./pages/product/category"
 import ListTransactionReportPage from "./pages/report"
+import TransactionPage from "./pages/transaction"
 
 function App() {
 	document.title = 'Toko Hidup Makmur'
@@ -54,6 +55,7 @@ function App() {
 					<Route path="/product/add-new-product" element={<AddNewProductPage />} />
 					<Route path="/category" element={<ListCategoryPage />} />
 					<Route path="/report" element={<ListTransactionReportPage />} />
+					<Route path="/transaction" element={<TransactionPage />} />
 				</Routes>
 			</div>
 			

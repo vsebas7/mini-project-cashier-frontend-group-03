@@ -4,6 +4,7 @@ import cashierReducer from "./slices/cashier"
 import productReducer from "./slices/product"
 import categoryReducer from "./slices/category"
 import reportReducer from "./slices/report"
+import cartReducer from "./slices/transaction"
 
 const store = configureStore({
     reducer : {
@@ -11,7 +12,9 @@ const store = configureStore({
         cashier : cashierReducer,
         product : productReducer,
         category : categoryReducer,
-        report : reportReducer
+        report : reportReducer,
+        cart: cartReducer
+        // transaction : transactionReducer
     },
 })
 
