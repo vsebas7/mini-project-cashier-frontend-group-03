@@ -7,14 +7,16 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 
 const cartSlice = createSlice({
     name: "cart",
-    initialState: [],
+    initialState: {
+        items: []
+    },
     reducers: {
         addItemToCart: (state, action) => {
             const { id, name, price } = action.payload;
-            const existingItem = state.items.find((item) => item.id === id);
+            const itemExists = state.items.find((item) => item.id === id);
       
-            if (existingItem) {
-                existingItem.qty += 1;
+            if (itemExists) {
+                itemExists.qty += 1;
             } else {
                 state.items.push({ id, name, price, qty: 1 });
             }

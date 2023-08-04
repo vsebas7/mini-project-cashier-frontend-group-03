@@ -13,7 +13,7 @@ function ProcessingTransaction ({
 }) {
     const dispatch = useDispatch()
 
-    const cartItems = useSelector((state) => state.cart.items)
+    const cartItems = useSelector((state) => state.transaction.cartItems)
 
     const totalPrice = cartItems.reduce (
         (total, item) => total + item.price * item.qty,
