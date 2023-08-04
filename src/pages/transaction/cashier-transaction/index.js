@@ -1,14 +1,41 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import moment from "moment"
-import RenderProductListForTransaction from "../../../components/transaction/list-product"
-import { handleAddItemToCart } from "../../../components/transaction/list-product"
 import RenderProcessingTransaction from "../../../components/transaction/cashier-transaction"
+// import { calculateTotalPrice } from "../../../components/transaction/total-transaction"
+// import { login } from "../../../store/slices/auth/slices"
 
-function CashierTransactionPage () {
+function CashierTransactionRightPage () {
     const dispatch = useDispatch()
 
+    const { cart } = useSelector(state => state.cart)
+
+    const getTotalQuantity = () => {
+        let total = 0
+        cart.forEach(item => {
+            total += item.quantity
+        })
+        return total
+    }
+
+    const { listProduct } = useSelector(state => {
+        return {
+            listProduct : state.product.list,
+        }
+    })
+
     const [show,setShow] = useState(false)
+
+
+    const cartItems = useSelector((state) => state.cart)
+    
+    // const totalPrice = calculateTotalPrice(cartItems)
+
+	const { username } = useSelector(state => {
+        return {
+			username : state.auth.username
+        }
+    })
 
     const today = moment().format('dddd, Do MMMM YYYY, h:mm:ss a')
 
@@ -18,7 +45,7 @@ function CashierTransactionPage () {
                 <caption class="p-5 text-lg font-semibold text-gray-900 bg-white text-center dark:text-white dark:bg-gray-800">
                     Toko Hidup Makmur
                     <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
-                        Cashier: test <br/>
+                        Cashier {username} <br/>
                         {today}
                     </p>
                 </caption>
@@ -45,7 +72,7 @@ function CashierTransactionPage () {
                     </tr>
                 </thead>
                 <tbody>
-                    <RenderProcessingTransaction onEdit={() => setShow(true)} onDelete={() => setShow(true)}/>
+                    <RenderProcessingTransaction productList={listProduct} onEdit={() => setShow(true)} onDelete={() => setShow(true)}/>
                 </tbody>
                 <thead class="text-lg text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
@@ -63,6 +90,7 @@ function CashierTransactionPage () {
                         </th>
                         <th scope="col" class="px-6 py-3 font-bold">
                             {/* menjumlahkan keseluruhan totalPrice */}
+                            {/* {totalPrice} */}
                         </th>
                         <th scope="col" class="px-6 py-3">
                             
@@ -82,4 +110,4 @@ function CashierTransactionPage () {
     )
 }
 
-export default CashierTransactionPage
+export default CashierTransactionRightPage

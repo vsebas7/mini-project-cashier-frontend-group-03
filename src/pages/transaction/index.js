@@ -1,5 +1,5 @@
-import ProductListPage from "./list-product"
-import CashierTransactionPage from "./cashier-transaction"
+import ProductListLeftPage from "./list-product"
+import CashierTransactionRightPage from "./cashier-transaction"
 
 function TransactionPage () {
     return (
@@ -10,10 +10,10 @@ function TransactionPage () {
 
             <div className="flex gap-4">
                 {/* ProductListLeftPage */}
-                <ProductListPage/>
+                <ProductListLeftPage/>
 
                 {/* CashierTransactionRightPage */}
-                <CashierTransactionPage/>
+                <CashierTransactionRightPage/>
 
             </div>
         </div>

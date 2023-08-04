@@ -1,21 +1,19 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getProduct } from "../../../store/slices/product/slices"
+import { getProduct } from "../../../store/slices/transaction/product-for-transaction/slices"
 import { getCategory } from "../../../store/slices/category/slices"
-// import RenderProductListCard from "../../components/products"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowUpAZ, faArrowDownZA, faArrowUp19, faArrowDown91,faCircleXmark  } from "@fortawesome/free-solid-svg-icons"
 import Pagination from "../../../components/pagination"
 import {RenderCategoryProduct} from "../../../components/category"
 import RenderProductListForTransaction from "../../../components/transaction/list-product"
 
-function ProductListPage () {
+function ProductListLeftPage () {
     const dispatch = useDispatch()
 
-    const { listProduct, detailProduct, currentPage, totalPage, categoryProduct } = useSelector(state => {
+    const { listProduct, currentPage, totalPage, categoryProduct } = useSelector(state => {
         return {
             listProduct : state.product.list,
-            detailProduct : state.product.detail,
             currentPage : state.product.currentPage,
             totalPage : state.product.totalPage,
             categoryProduct : state.category.list,
@@ -232,4 +230,4 @@ function ProductListPage () {
     )
 }
 
-export default ProductListPage
+export default ProductListLeftPage

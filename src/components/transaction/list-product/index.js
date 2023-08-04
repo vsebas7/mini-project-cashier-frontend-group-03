@@ -1,8 +1,10 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 // import { faPenToSquare } from "@fortawesome/free-solid-svg-icons"
-import { addItemToCart } from "../../../store/slices/transaction/slices"
+import { addItemToCart } from "../../../store/slices/transaction/index"
+import { getProductDetail } from "../../../store/slices/transaction/product-for-transaction/slices"
 
 function ProductListForTransaction ({
     id = "",
@@ -14,17 +16,33 @@ function ProductListForTransaction ({
 }) {
     const dispatch = useDispatch()
 
+    
+
     const [transaction, setTransaction] = useState([])
     
 
-    const addToCartIcon = <FontAwesomeIcon icon="fa-solid fa-cart-plus" flip />
+    const addToCartIcon = <FontAwesomeIcon icon="fa-solid fa-cart-plus" />
 
-    const onButtonAdd = ()=>{
-        const product = { id, name, price }
-        dispatch(addItemToCart(product))
-        onAdd()
-    }
-        
+    // const onButtonAdd = ()=>{
+    //     dispatch(
+    //         getProductDetail(id, name, price),
+    //     )
+    //     onAdd()
+    // }
+    
+    const navigate = useNavigate()
+    // const onButtonAdd = () => {
+    //     const product = {
+    //         id: id,
+    //         name: name,
+    //         price: price
+    //     };
+    //     dispatch(addItemToCart(product));
+    //     onAdd();
+    // };
+
+    // navigate("/transaction/")
+
     return (
         <tr key={id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
           <td className="px-6 py-4">
@@ -37,17 +55,11 @@ function ProductListForTransaction ({
           <td className="px-6 py-4">{name}</td>
           <td className="px-6 py-4">{price}</td>
           <td className="px-6 py-4">{desc}</td>
-          <td className="px-6 py-4 text-right">
-            {/* <a
-              href="#"
-              className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-              onClick={() => onAdd()}
-            >
-              Add To Cart
-            </a> */}
-            
+          <td className="px-6 py-4 text-right">            
             <a
-                onClick={onButtonAdd}
+                onClick={() =>
+                    dispatch(addItemToCart({id, image, price}))
+                }
                 class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
                 {addToCartIcon}
