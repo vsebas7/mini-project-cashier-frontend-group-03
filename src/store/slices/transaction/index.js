@@ -28,29 +28,29 @@ const transactionSlice = createSlice({
 const cartSlice = createSlice({
     name: "cart",
     initialState: {
-        items: []
+        cart: []
     },
     reducers: {
         addItemToCart: (state, action) => {
             // const { id, name, price } = action.payload;
-            const itemInCart = state.items.find(
+            const itemInCart = state.cart.find(
                 (item) => item.id === action.payload.id
             )
 
             if (itemInCart) {
                 itemInCart.qty++;
             } else {
-                state.items.push({ ...action.payload, qty: 1 });
+                state.cart.push({ ...action.payload, qty: 1 });
             }
         },
         incrementQuantity: (state, action) => {
-            const item = state.items.find(
+            const item = state.cart.find(
                 (item) => item.id === action.payload
             )
             item.qty++
         },
         decrementQuantity: (state, action) => {
-            const item = state.items.find(
+            const item = state.cart.find(
                 (item => item.id === action.payload)
             )
             if (item.qty === 1) {
@@ -60,10 +60,10 @@ const cartSlice = createSlice({
             }
         },
         removeItem: (state, action) => {
-            const removeItem = state.items.filter(
+            const removeItem = state.cart.filter(
                 (item) => item.id !== action.payload
             )
-            state.items = removeItem
+            state.cart = removeItem
         }
     }
 })

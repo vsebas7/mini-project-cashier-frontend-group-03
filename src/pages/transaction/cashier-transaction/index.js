@@ -8,15 +8,15 @@ import RenderProcessingTransaction from "../../../components/transaction/cashier
 function CashierTransactionRightPage () {
     const dispatch = useDispatch()
 
-    const { cart } = useSelector(state => state.cart)
+    // const { cart } = useSelector(state => state.cart)
 
-    const getTotalQuantity = () => {
-        let total = 0
-        cart.forEach(item => {
-            total += item.quantity
-        })
-        return total
-    }
+    // const getTotalQuantity = () => {
+    //     let total = 0
+    //     cart.forEach(item => {
+    //         total += item.qty
+    //     })
+    //     return total
+    // }
 
     const { listProduct } = useSelector(state => {
         return {
@@ -27,7 +27,7 @@ function CashierTransactionRightPage () {
     const [show,setShow] = useState(false)
 
 
-    const cartItems = useSelector((state) => state.cart)
+    // const cartItems = useSelector((state) => state.cart)
     
     // const totalPrice = calculateTotalPrice(cartItems)
 

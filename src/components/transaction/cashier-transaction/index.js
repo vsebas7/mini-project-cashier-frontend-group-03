@@ -46,18 +46,18 @@ function ProcessingTransaction ({
 }
 
 export default function RenderProcessingTransaction ({
-    cartItems = [],
+    productList = [],
     onEdit = () => {},
     onDelete = () => {}
 }) {
-    return cartItems.map((item, index) => {
+    return productList.map((productList, index) => {
         return (
-            <ProcessingTransaction key={item.id}
-                id={item.id}
-                name={item.name}
-                qty={item.qty}
-                price={item.price}
-                totalPrice={item.totalPrice}
+            <ProcessingTransaction key={productList.id}
+                id={productList.id}
+                name={productList.name}
+                qty={productList.qty}
+                price={productList.price}
+                totalPrice={productList.totalPrice}
                 onEdit={onEdit}
                 onDelete={onDelete}
             />
