@@ -89,9 +89,11 @@ export const editProductDetail = createAsyncThunk(
         try {
             const {data} = await api.patch("product/change-product-details/" + encodeURI(payload.product_id),payload.data)
 
+            const newResponse = await api.get("product")
+
             Toast.success(data.message)
 
-            return data
+            return newResponse.data
         } catch (error) {
             Toast.error(error.response.data.message)
             

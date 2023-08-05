@@ -78,7 +78,10 @@ const productSlice = createSlice({
             state.isEditProductLoading = true
         },
         [editProductDetail.fulfilled] : (state, action) => {
-            state.isEditProductLoading = false
+            state = Object.assign(state, {
+                list : action.payload.product.list,
+                isEditProductLoading : false
+            })
         },
         [editProductDetail.rejected] : (state, action) => {
             state.isEditProductLoading = false

@@ -87,13 +87,13 @@ function ListTransactionReportPage () {
     const onButtonFilter = () => {
         dispatch(
             getReport({
-                startFrom : !startDateRef.current.value ? moment().format("YYYY-MM-DD") : startDateRef.current.value,
-                endFrom : !endDateRef.current.value ? moment().format("YYYY-MM-DD") : endDateRef.current.value
+                startFrom : startDateRef.current.value,
+                endFrom : endDateRef.current.value
             })
         )
         dispatch(getAllReport({
-                startFrom : startDateRef.current.value ? moment().format("YYYY-MM-DD") : startDateRef.current.value,
-                endFrom : !endDateRef.current.value ? moment().format("YYYY-MM-DD") : endDateRef.current.value,
+                startFrom : startDateRef.current.value,
+                endFrom : endDateRef.current.value,
             }))
         setFilter(true)
     }
@@ -192,7 +192,7 @@ function ListTransactionReportPage () {
                     <button 
                         type="button" 
                         class="mx-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                        disabled ={startDateRef.current?.value && endDateRef.current?.value}
+                        // disabled ={startDateRef.current?.value && endDateRef.current?.value}
                         onClick={onButtonFilter}
 
                     >

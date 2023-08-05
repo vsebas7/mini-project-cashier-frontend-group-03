@@ -86,7 +86,7 @@ function ProductDetailCard ({
                 }
             )
         )
-        dispatch(editProductImage({product_id : id,data :formData})) 
+        if(file.name){dispatch(editProductImage({product_id : id,data :formData}))}
         setConfirmation(false)
         onButtonCancel()
     }
