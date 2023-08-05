@@ -40,28 +40,27 @@ function CashierTransactionRightPage () {
     const today = moment().format('dddd, Do MMMM YYYY, h:mm:ss a')
 
     return (
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg max-w-screen-md flex-1">
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg flex-1 gap-4 mr-5">
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <caption class="p-5 text-lg font-semibold text-gray-900 bg-white text-center dark:text-white dark:bg-gray-800">
-                    Toko Hidup Makmur
+                    Cashier Toko Hidup Makmur
                     <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
-                        Cashier {username} <br/>
                         {today}
                     </p>
                 </caption>
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
-                        <th scope="col" class="px-6 py-3 ">
+                        <th scope="col" class="px-6 py-3 w-auto">
                             No.
                         </th>
-                        <th scope="col" class="px-6 py-3">
+                        <th scope="col" class="px-6 py-3 w-auto">
                             Product name
-                        </th>
-                        <th scope="col" class="px-6 py-3 max-w-0">
-                            Qty
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Each Price
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-center">
+                            Qty
                         </th>
                         <th scope="col" class="px-6 py-3 font-semibold">
                             Total Price
@@ -72,6 +71,36 @@ function CashierTransactionRightPage () {
                     </tr>
                 </thead>
                 <tbody>
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <td className="px-6 py-4">1</td>
+                        <td className="px-6 py-4">Roti</td>
+                        <td className="px-6 py-4">123</td>
+                        <td className="px-6 py-4">
+                            <div className="flex gap-2 items-center justify-center">
+                                <button className="flex items-center justify-center bg-slate-200 border rounded-full w-6 h-6"
+                                  
+                                >
+                                    -
+                                </button>
+                                1
+                                <button className="flex items-center justify-center bg-slate-200 border rounded-full w-6 h-6"
+                                
+                                >
+                                    +
+                                </button>  
+                            </div>
+                        </td>
+                        <td className="px-6 py-4">123
+                        </td>
+                        <td class="px-6 py-4 text-right">
+                            <button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                                
+                            >
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+
                     <RenderProcessingTransaction productList={listProduct} onEdit={() => setShow(true)} onDelete={() => setShow(true)}/>
                 </tbody>
                 <thead class="text-lg text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
