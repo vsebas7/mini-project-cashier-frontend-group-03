@@ -7,7 +7,7 @@ export const login = createAsyncThunk(
      
     async (payload, { rejectWithValue }) => {
         try {
-            const response = await api.post("auth/admin/login", payload)
+            const response = await api.post("auth/login", payload)
 
             const {data} = response
 
@@ -44,7 +44,7 @@ export const keepLogin = createAsyncThunk (
 
     async (payload, { rejectWithValue }) =>{
         try {
-            const {data} = await api.get("/auth/admin/keep-login")
+            const {data} = await api.get("/auth/keep-login")
 
             return data
         } catch (error) {
@@ -58,7 +58,7 @@ export const forgotPassword = createAsyncThunk (
 
     async (payload, {rejectWithValue}) => {
         try {
-            const {data} = await api.put("auth/admin/forgot-password", payload)
+            const {data} = await api.put("auth/forgot-password", payload)
 
             Toast.success(data.message)
             
@@ -79,7 +79,7 @@ export const resetPassword = createAsyncThunk (
             
             localStorage.setItem("token", token)
 
-            const {data} = await api.patch("auth/admin/reset-password",payload)
+            const {data} = await api.patch("auth/reset-password",payload)
 
             Toast.success(data.message)
 
