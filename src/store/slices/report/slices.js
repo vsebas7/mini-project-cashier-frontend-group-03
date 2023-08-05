@@ -39,7 +39,7 @@ export const getAllReport = createAsyncThunk(
 
     async (payload, {rejectWithValue}) => {
         try {
-            const { startFrom, endFrom } = payload
+            let { startFrom, endFrom } = payload
 
             const PARAMETER = `?startFrom=${startFrom}&endFrom=${endFrom}`
 

@@ -72,7 +72,10 @@ const cashierSlice = createSlice({
             state.isEditCashierLoading = true
         },
         [editCashier.fulfilled] : (state, action)=> {
-            state.isEditCashierLoading = false
+             state = Object.assign(state, {
+                list : action.payload,
+                isEditCashierLoading : false
+            })
         },
         [editCashier.rejected] : (state, action) => {
             state.isEditCashierLoading = false

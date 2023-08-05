@@ -7,7 +7,7 @@ export const getCashier = createAsyncThunk (
     
     async (payload, {rejectWithValue}) => {
         try {
-            const {data} = await api.get("auth/admin/cashier",payload)
+            const {data} = await api.get("auth/admin/cashier")
 
             Toast.success(data.message)
 
@@ -77,8 +77,11 @@ export const editCashier = createAsyncThunk (
         try {
             const {data} = await api.patch("auth/admin/cashier/" + encodeURI(payload.idCashier),payload.data)
 
+            const newResponse = await api.get("auth/admin/cashier")
+
             Toast.success(data.message)
 
+            return newResponse.data.cashier
         } catch (error) {
             Toast.error(error.response?.data?.message)
             return rejectWithValue(error.response?.data?.message)
