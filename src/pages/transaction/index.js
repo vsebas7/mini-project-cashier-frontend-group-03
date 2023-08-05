@@ -8,7 +8,7 @@ function TransactionPage () {
                 Transaction
             </a>
 
-            <div className="flex gap-4">
+            <div className="flex gap-8">
                 {/* ProductListLeftPage */}
                 <ProductListLeftPage/>
 

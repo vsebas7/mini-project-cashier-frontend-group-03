@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
-import api from "../../utils/api.instance"
+import api from "../../../utils/api.instance"
 import Toast from "react-hot-toast"
-import product from "../product"
+import product from "../../product"
 
 export const createNewTransaction = createAsyncThunk(
     "/transaction",
@@ -13,6 +13,20 @@ export const createNewTransaction = createAsyncThunk(
             Toast.success(data.message)
 
             return data
+        } catch (error) {
+            Toast.error(error.response.data.message)
+
+            return rejectWithValue(error.response.data.message)
+        }
+    }
+)
+
+export const addToCart = createAsyncThunk(
+    "/transaction/add-to-cart",
+
+    async (payload, {rejectWithValue}) => {
+        try {
+            return payload
         } catch (error) {
             Toast.error(error.response.data.message)
 

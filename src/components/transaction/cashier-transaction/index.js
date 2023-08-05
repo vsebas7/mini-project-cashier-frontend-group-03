@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import moment from "moment";
 import { incrementQuantity, decrementQuantity, removeItem } from "../../../store/slices/transaction";
-import { getProductFromLocalStorage } from "../../../pages/transaction/get-product-from-local/productUtils"; 
+import { getProductFromLocalStorage } from "../get-product-from-local/productUtils"; 
 
 function ProcessingTransaction({
     id = "",
@@ -13,36 +13,19 @@ function ProcessingTransaction({
     onDelete = () => {},
 }) {
     const dispatch = useDispatch();
-    const [cartItems, setCartItems] = useState([])
 
-    // const cartItems = useSelector((state) => state.cart.cart)
+    const cartItems = useSelector((state) => state.cart.cart)
 
-    useEffect(() => {
-        const cartData = getProductFromLocalStorage()
-        setCartItems(cartData)
-    })
+    const totalPrice = qty * price
 
-    // useEffect(() => {
-    //     const cartData = JSON.parse(localStorage.getItem('products')) || [];
-    //         setCartItems(cartData);
-    // }, []);
-
-    // const handleAddToCart = () => {
-    //     onButtonAdd
-    // }
-
-    const totalPrice = cartItems.reduce((total, item) => total + item.price * item.qty, 0);
-
-    // const totalPrice = qty * price;
+    // const totalPrice = cartItems.reduce((total, item) => total + item.price * item.qty, 0);
 
     const today = moment().format("dddd, Do MMMM YYYY, h:mm:ss a");
 
 
 
     return (
-        <div>
         <tr key={id} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-            <td className="px-6 py-4">{id}</td>
             <td className="px-6 py-4">{name}</td>
             <td className="px-6 py-4">{price}</td>
             <td className="px-6 py-4">
@@ -70,25 +53,26 @@ function ProcessingTransaction({
                 </button>
             </td>
         </tr>
-        </div>
     );
 }
 
 export default function RenderProcessingTransaction({
-    cartItem = [],
     productList = [],
+    cart = [],
+    onEdit = () => {},
     onDelete = () => {},
 }) {
-    return cartItem.map((item, index) => {
+    return productList.map((productList, index) => {
+        const isInCart = cart.some((item) => item.id === productList.id)
         return (
             <ProcessingTransaction
-                key={item.id}
-                id={item.id}
-                name={item.name}
-                qty={item.qty}
-                price={item.price}
-                totalPrice={item.totalPrice}
-                onDelete={onDelete}
+                key={productList.id}
+                id={productList.id}
+                image={productList.image}
+                name={productList.name}
+                price={productList.price}
+                desc={productList.description}
+                isInCart={isInCart}
             />
         )
     })
